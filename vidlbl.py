@@ -111,7 +111,7 @@ upper_blue = np.array([104,255,240])
 
 
 
-vidpath = os.path.join(curpath,"masktest.mp4")
+vidpath = os.path.join(curpath,"onlyorange.mp4")
 
 cap = cv.VideoCapture(vidpath)
 
@@ -133,6 +133,7 @@ blc=300
 bld=300
 
 counter = 0
+secondcounter = 0
 
 while cap.isOpened():
 
@@ -198,17 +199,17 @@ while cap.isOpened():
 	elif(d > 0):
 		ld=d
 
-	print(f"last[{la},{lb},{lc},{ld}]")
-	print(f"abcd[{a},{b},{c},{d}]")
+	#print(f"last[{la},{lb},{lc},{ld}]")
+	#print(f"abcd[{a},{b},{c},{d}]")
 	orange = drawVert(lc,orange)
 	orange = drawVert(1278-ld,orange)
 	orange = drawHrzn(la,orange)
 	orange = drawHrzn(718-lb,orange)
 
-	frame = drawVertB(lc,frame)
-	frame = drawVertB(1278-ld,frame)
-	frame = drawHrznB(la,frame)
-	frame = drawHrznB(718-lb,frame)
+	#frame = drawVertB(lc,frame)
+	#frame = drawVertB(1278-ld,frame)
+	#frame = drawHrznB(la,frame)
+	#frame = drawHrznB(718-lb,frame)
 	
 	cv.imshow("orange", orange)
 #_____________________________________________________
@@ -236,28 +237,28 @@ while cap.isOpened():
 	BISCIRCLE = (not (ba==-1 and bb==-1 and bc==-1 and bd==-1))
 
 	if(bla==ba or (ba==-1 and BISCIRCLE)):
-		bla+=10
+		bla+=20
 	elif((not BISCIRCLE) and (bla-5)>0):
 		bla-=5
 	elif(ba > 0):
 		bla=ba
 
 	if(blb==bb or (bb==-1 and BISCIRCLE)):
-		blb+=10
+		blb+=20
 	elif((not BISCIRCLE) and (blb-5)>0):
 		blb-=5
 	elif(bb > 0):
 		blb=bb
 
 	if(blc==bc or (bc==-1 and BISCIRCLE)):
-		blc+=10
+		blc+=20
 	elif((not BISCIRCLE) and (blc-5)>200):
 		blc-=5
 	elif(bc > 0):
 		blc=bc
 
 	if(bld==bd or (bd==-1 and BISCIRCLE)):
-		bld+=10
+		bld+=20
 	elif((not BISCIRCLE) and (bld-5)>200):
 		bld-=5
 	elif(bd > 0):
@@ -277,38 +278,40 @@ while cap.isOpened():
 
 #______________________________________________________
 #orange is 183, blue is 184
-	ox = (1280-ld-lc)/2 * 1/1280
-	oy = (720-b-la)/2 * 1/720
-	oh = (1280-ld-lc) * 1/1280
-	ow = (720-b-la) * 1/720
+	ox = ((1280-ld-lc)/2+lc) * 1/1280
+	oy = ((720-lb-la)/2+la) * 1/720
+	oh = (720-lb-la) * 1/720
+	ow = (1280-ld-lc) * 1/1280
 
-	bx = (1280-bld-blc)/2 * 1/1280
-	by = (720-bb-bla)/2 * 1/720
-	bh = (1280-bld-blc) * 1/1280
-	bw = (720-bb-bla) * 1/720
+	bx = ((1280-bld-blc)/2+blc) * 1/1280
+	by = ((720-blb-bla)/2+bla) * 1/720
+	bw = (1280-bld-blc) * 1/1280
+	bh = (720-blb-bla) * 1/720
 
 	texto = "183" +" "+ str(ox) +" "+ str(oy) +" "+ str(ow) +" "+ str(oh)
 	textb = "184" +" "+ str(bx) +" "+ str(by) +" "+ str(bw) +" "+ str(bh)
+	print(texto)
 
-	if(counter % 10 == 0):
-		if(la != -1 and lb != -1 and lc != -1 and ld != -1):
-			createlabel(f"{counter}orange.txt", texto, "train")
-			createimg(f"{counter}orange.jpg", orange, "train")
-
-		if(bla != -1 and blb != -1 and blc != -1 and bld != -1):
-			createlabel(f"{counter}blue.txt", textb, "train")
-			createimg(f"{counter}blue.jpg", blue, "train")
-	else:
-		
-		if(la != -1 and lb != -1 and lc != -1 and ld != -1):
-			createlabel(f"{counter}orange.txt", texto, "test")
-			createimg(f"{counter}orange.jpg", orange, "test")
-
-		if(bla != -1 and blb != -1 and blc != -1 and bld != -1):
-			createlabel(f"{counter}blue.txt", textb, "test")
-			createimg(f"{counter}blue.jpg", blue, "test")
-
-	counter +=1
+	#if(True):
+	#	if(counter % 10 == 0):
+	#		if(a != -1 and b != -1 and c != -1 and d != -1):
+	#			createlabel(f"{counter}orange.txt", texto, "test")
+	#			createimg(f"{counter}orange.jpg", frame, "test")
+				
+	#		if(ba != -1 and bb != -1 and bc != -1 and bd != -1):
+	#			createlabel(f"{counter}blue.txt", textb, "test")
+	#			createimg(f"{counter}blue.jpg", frame, "test")
+	#	else:
+	#		if(a != -1 and b != -1 and c != -1 and d != -1):
+	#			createlabel(f"{counter}orange.txt", texto, "train")
+	#			createimg(f"{counter}orange.jpg", frame, "train")
+	
+	#		if(ba != -1 and bb != -1 and bc != -1 and bd != -1):
+	#			createlabel(f"{counter}blue.txt", textb, "train")
+	#			createimg(f"{counter}blue.jpg", frame, "train")
+	
+	#	counter +=1
+	#secondcounter +=1
 
 	if cv.waitKey(1) == ord("q"):
 		break
