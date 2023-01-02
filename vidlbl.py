@@ -288,30 +288,30 @@ while cap.isOpened():
 	bw = (1280-bld-blc) * 1/1280
 	bh = (720-blb-bla) * 1/720
 
-	texto = "183" +" "+ str(ox) +" "+ str(oy) +" "+ str(ow) +" "+ str(oh)
-	textb = "184" +" "+ str(bx) +" "+ str(by) +" "+ str(bw) +" "+ str(bh)
-	print(texto)
+	#texto = "183" +" "+ str(ox) +" "+ str(oy) +" "+ str(ow) +" "+ str(oh)
+	#textb = "184" +" "+ str(bx) +" "+ str(by) +" "+ str(bw) +" "+ str(bh)
+	#print(texto)
 
-	#if(True):
-	#	if(counter % 10 == 0):
-	#		if(a != -1 and b != -1 and c != -1 and d != -1):
-	#			createlabel(f"{counter}orange.txt", texto, "test")
-	#			createimg(f"{counter}orange.jpg", frame, "test")
+	if(True):
+		if(counter % 10 == 0):
+			if(a != -1 and b != -1 and c != -1 and d != -1):
+				createlabel(f"{counter}orange.txt", texto, "test")
+				createimg(f"{counter}orange.jpg", frame, "test")
 				
-	#		if(ba != -1 and bb != -1 and bc != -1 and bd != -1):
-	#			createlabel(f"{counter}blue.txt", textb, "test")
-	#			createimg(f"{counter}blue.jpg", frame, "test")
-	#	else:
-	#		if(a != -1 and b != -1 and c != -1 and d != -1):
-	#			createlabel(f"{counter}orange.txt", texto, "train")
-	#			createimg(f"{counter}orange.jpg", frame, "train")
+			if(ba != -1 and bb != -1 and bc != -1 and bd != -1):
+				createlabel(f"{counter}blue.txt", textb, "test")
+				createimg(f"{counter}blue.jpg", frame, "test")
+		else:
+			if(a != -1 and b != -1 and c != -1 and d != -1):
+				createlabel(f"{counter}orange.txt", texto, "train")
+				createimg(f"{counter}orange.jpg", frame, "train")
 	
-	#		if(ba != -1 and bb != -1 and bc != -1 and bd != -1):
-	#			createlabel(f"{counter}blue.txt", textb, "train")
-	#			createimg(f"{counter}blue.jpg", frame, "train")
+			if(ba != -1 and bb != -1 and bc != -1 and bd != -1):
+				createlabel(f"{counter}blue.txt", textb, "train")
+				createimg(f"{counter}blue.jpg", frame, "train")
 	
-	#	counter +=1
-	#secondcounter +=1
+		counter +=1
+	secondcounter +=1
 
 	if cv.waitKey(1) == ord("q"):
 		break
