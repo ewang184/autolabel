@@ -297,23 +297,23 @@ while cap.isOpened():
 	if(True):
 		print("outloop")
 		if(counter % 10 == 0):
-			print(f"gottocreatetestlabel| {a} {b} {c} {d}")
-			if(a != -1 and b != -1 and c != -1 and d != -1):
-				createlabel(f"{counter}orange.txt", texto, "test")
-				createimg(f"{counter}orange.jpg", frame, "test")
+#			print(f"gottocreatetestlabel| {a} {b} {c} {d}")
+#			if(a != -1 and b != -1 and c != -1 and d != -1):
+#				createlabel(f"{counter}orange.txt", texto, "test")
+#				createimg(f"{counter}orange.jpg", frame, "test")
 				
-#			if(ba != -1 and bb != -1 and bc != -1 and bd != -1):
-#				createlabel(f"{counter}blue.txt", textb, "test")
-#				createimg(f"{counter}blue.jpg", frame, "test")
+			if(ba != -1 and bb != -1 and bc != -1 and bd != -1):
+				createlabel(f"{counter}blue.txt", textb, "test")
+				createimg(f"{counter}blue.jpg", frame, "test")
 		else:
-			print(f"gottocreatetrainlabel| {a} {b} {c} {d}")
-			if(a != -1 and b != -1 and c != -1 and d != -1):
-				createlabel(f"{counter}orange.txt", texto, "train")
-				createimg(f"{counter}orange.jpg", frame, "train")
+#			print(f"gottocreatetrainlabel| {a} {b} {c} {d}")
+#			if(a != -1 and b != -1 and c != -1 and d != -1):
+#				createlabel(f"{counter}orange.txt", texto, "train")
+#				createimg(f"{counter}orange.jpg", frame, "train")
 	
-#			if(ba != -1 and bb != -1 and bc != -1 and bd != -1):
-#				createlabel(f"{counter}blue.txt", textb, "train")
-#				createimg(f"{counter}blue.jpg", frame, "train")
+			if(ba != -1 and bb != -1 and bc != -1 and bd != -1):
+				createlabel(f"{counter}blue.txt", textb, "train")
+				createimg(f"{counter}blue.jpg", frame, "train")
 	
 		counter +=1
 	secondcounter +=1
