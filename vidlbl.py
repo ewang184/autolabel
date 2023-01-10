@@ -2,7 +2,7 @@ import numpy as np
 import cv2 as cv
 import pathlib
 import os
-
+import sys
 #there should be 2 prevs
 
 def topy(npa,prev,x1,x2):
@@ -79,15 +79,17 @@ def drawHrznB(x, npa):
 	return npa
 
 def createlabel(lblname, text, type):
-	targetdir = os.path.join(curpath, f'{type}\labels')
+	targetdir = os.path.join(curpath, f'{type}labels')
 	targetdir = os.path.join(targetdir,lblname)
+	print(f'file is {targetdir}')
 	file = open(targetdir,"a")
 	text = text+"\n"
 	file.write(text)
 
 def createimg(imgname, npa, type):
-	targetdir = os.path.join(curpath, f'{type}\images')
+	targetdir = os.path.join(curpath, f'{type}images')
 	targetdir = os.path.join(targetdir,imgname)
+	print(f'file is {targetdir}')
 	cv.imwrite(targetdir, npa)
 
 #________________________start program
@@ -109,9 +111,9 @@ upper_blue = np.array([104,255,240])
 
 #get data directories
 
+vidname = sys.argv[1]
 
-
-vidpath = os.path.join(curpath,"onlyorange.mp4")
+vidpath = os.path.join(curpath,vidname)
 
 cap = cv.VideoCapture(vidpath)
 
@@ -288,27 +290,30 @@ while cap.isOpened():
 	bw = (1280-bld-blc) * 1/1280
 	bh = (720-blb-bla) * 1/720
 
-	#texto = "183" +" "+ str(ox) +" "+ str(oy) +" "+ str(ow) +" "+ str(oh)
-	#textb = "184" +" "+ str(bx) +" "+ str(by) +" "+ str(bw) +" "+ str(bh)
+	texto = "183" +" "+ str(ox) +" "+ str(oy) +" "+ str(ow) +" "+ str(oh)
+	textb = "184" +" "+ str(bx) +" "+ str(by) +" "+ str(bw) +" "+ str(bh)
 	#print(texto)
 
 	if(True):
+		print("outloop")
 		if(counter % 10 == 0):
+			print(f"gottocreatetestlabel| {a} {b} {c} {d}")
 			if(a != -1 and b != -1 and c != -1 and d != -1):
 				createlabel(f"{counter}orange.txt", texto, "test")
 				createimg(f"{counter}orange.jpg", frame, "test")
 				
-			if(ba != -1 and bb != -1 and bc != -1 and bd != -1):
-				createlabel(f"{counter}blue.txt", textb, "test")
-				createimg(f"{counter}blue.jpg", frame, "test")
+#			if(ba != -1 and bb != -1 and bc != -1 and bd != -1):
+#				createlabel(f"{counter}blue.txt", textb, "test")
+#				createimg(f"{counter}blue.jpg", frame, "test")
 		else:
+			print(f"gottocreatetrainlabel| {a} {b} {c} {d}")
 			if(a != -1 and b != -1 and c != -1 and d != -1):
 				createlabel(f"{counter}orange.txt", texto, "train")
 				createimg(f"{counter}orange.jpg", frame, "train")
 	
-			if(ba != -1 and bb != -1 and bc != -1 and bd != -1):
-				createlabel(f"{counter}blue.txt", textb, "train")
-				createimg(f"{counter}blue.jpg", frame, "train")
+#			if(ba != -1 and bb != -1 and bc != -1 and bd != -1):
+#				createlabel(f"{counter}blue.txt", textb, "train")
+#				createimg(f"{counter}blue.jpg", frame, "train")
 	
 		counter +=1
 	secondcounter +=1
