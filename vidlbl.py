@@ -106,9 +106,6 @@ img3 = cv.bilateralFilter(img,15,80,80)
 
 hsv = cv.cvtColor(img3,cv.COLOR_BGR2HSV)
 
-lower_blue = np.array([100,80,160])
-upper_blue = np.array([104,255,240])
-
 #get data directories
 
 vidname = sys.argv[1]
